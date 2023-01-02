@@ -19,25 +19,28 @@ const backGround = new GameObject({
     posY:0,
     color:"#000",
     visible: true,
+    image: null
 }, "rect")
 
-let elementList = [backGround]
+let elementList = [backGround, "iii"]
 
 updateScreen()
 
-function updateScreen() {
-    elementList = [backGround]
+function  updateScreen() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    
+    for (let i = 0; i < elementList.length ; i++){
 
-    elementList.forEach(element => {
+        let current = elementList[i] 
 
-        element.property.posX += element.velocity.x
-        element.property.posY += element.velocity.y
+        console.log(current)
+        if (current.type == "rect") {
+            ctx.fillStyle = current.property.color
+            ctx.fillRect(current.property.posX, current.property.posY, current.property.width, current.property.height)
+        }
 
-        ctx.fillStyle = element.property.color
-        ctx.fillRect(element.property.posX, element.property.posY, element.property.width, element.property.height)
+    }
 
-        
-    })
 
     requestAnimationFrame(updateScreen)
 }
