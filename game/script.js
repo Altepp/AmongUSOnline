@@ -10,6 +10,10 @@ canvas.height = window.innerHeight
 window.onresize = function(){
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
+
+    backGround.property.width = window.innerWidth
+    backGround.property.height = window.innerHeight
+    console.log("resized")
 }
 
 const backGround = new GameObject({
@@ -33,8 +37,9 @@ function  updateScreen() {
 
         let current = elementList[i] 
 
-        console.log(current)
+
         if (current.type == "rect") {
+            console.log(current.property.width)
             ctx.fillStyle = current.property.color
             ctx.fillRect(current.property.posX, current.property.posY, current.property.width, current.property.height)
         }
